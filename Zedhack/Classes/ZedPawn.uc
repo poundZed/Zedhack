@@ -14,19 +14,6 @@ class ZedPawn extends GamePawn
         return 'Isometric';
 }
     
-    //stop aim node from aiming up or down
-/*simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
-{
-    super.PostInitAnimTree(SkelComp);
-    AimNode.bForceAimDir = true; //forces centercenter
-} */
-
-Begin Object Name=CollisionCylinder
-CollisionRadius=?????
-CollisionHeight=?????
-End Object
-CylinderComponent=CollisionCylinder
-
     //only update pawn rotation while moving
 simulated function FaceRotation(rotator NewRotation, float DeltaTime)
 {
@@ -47,20 +34,7 @@ simulated function FaceRotation(rotator NewRotation, float DeltaTime)
     }
     
 }
-    
-exec function ZoomIn()
-{
-    `Log("Zoom in");
-    if(CamOffsetDistance > CamMinDistance)
-        CamOffsetDistance-=CamZoomTick;
-}
-
-exec function ZoomOut()
-{
-    `Log("Zoom out");
-    if(CamOffsetDistance < CamMaxDistance)
-        CamOffsetDistance+=CamZoomTick;
-}
+     
 
 defaultproperties
 {
@@ -95,9 +69,15 @@ defaultproperties
     Components.Add(InitialSkeletalMesh);
     
     GroundSpeed=500.0  
-    CamHeight = 40.0
+    CamHeight = 120.0
     CamMinDistance = 40.0
     CamMaxDistance = 256.0
     CamOffsetDistance=256.0
     CamZoomTick=20.0   
+    
+    Begin Object Name=CollisionCylinder
+    CollisionRadius=30
+    CollisionHeight=49
+    End Object
+    CylinderComponent=CollisionCylinder
 }

@@ -70,7 +70,7 @@ case 'Isometric':
 // fix Camera rotation
 Rot.Pitch = (-45.0f     *DegToRad) * RadToUnrRot;
 Rot.Roll =  (0          *DegToRad) * RadToUnrRot;
-Rot.Yaw =   (135.0f      *DegToRad) * RadToUnrRot;
+Rot.Yaw =   (0.0f      *DegToRad) * RadToUnrRot;
 
 Loc.X = PCOwner.Pawn.Location.X - 0;
 Loc.Y = PCOwner.Pawn.Location.Y - 0;
@@ -101,4 +101,5 @@ ApplyCameraModifiers(DeltaTime, OutVT.POV);
 DefaultProperties
 {
     DefaultFOV=90.f
+    FreeCamDistance=600.f
 }
