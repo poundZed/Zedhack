@@ -1,5 +1,7 @@
 class IsoCam extends Camera;
 
+var float ZoomCamDistance; //FreeCamDistance + CamZoom
+
 function UpdateViewTarget(out TViewTarget OutVT, float DeltaTime)
 {
 local vector        Loc, Pos, HitLocation, HitNormal;
@@ -59,7 +61,7 @@ Rot = PCOwner.Rotation;
 }
 Loc += FreeCamOffset >> Rot;
 
-Pos = Loc - Vector(Rot) * FreeCamDistance;
+Pos = Loc - Vector(Rot) * ZoomCamDistance;
 // @fixme, respect BlockingVolume.bBlockCamera=false
 HitActor = Trace(HitLocation, HitNormal, Pos, Loc, FALSE, vect(12,12,12));
 OutVT.POV.Location = (HitActor == None) ? Pos : HitLocation;
@@ -80,6 +82,7 @@ Pos = Loc - Vector(Rot) * FreeCamDistance;
 
 OutVT.POV.Location = Pos;
 OutVT.POV.Rotation = Rot;
+
 break;
 
 case 'FirstPerson'  : // Simple first person, view through viewtarget's 'eyes'
@@ -96,10 +99,10 @@ if( !bDoNotApplyModifiers )
 ApplyCameraModifiers(DeltaTime, OutVT.POV);
 }
 //`log( WorldInfo.TimeSeconds  @ GetFuncName() @ OutVT.Target @ OutVT.POV.Location @ OutVT.POV.Rotation @ OutVT.POV.FOV );
-}
+}  
 
 DefaultProperties
 {
-    DefaultFOV=90.f
-    FreeCamDistance=600.f
+    DefaultFOV = 90.f
+    FreeCamDistance = 390.f
 }

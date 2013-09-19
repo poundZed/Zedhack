@@ -1,10 +1,4 @@
-class ZedPawn extends GamePawn
-    config(Game);
-
-    var float CamOffsetDistance; //distance to offset the camera from the player in unreal units
-    var float CamMinDistance, CamMaxDistance;
-    var float CamZoomTick; //how far to zoom in/out per command
-    var float CamHeight; //how high cam is relative to pawn pelvis
+class ZedPawn extends UDKPawn;
 
     simulated function name GetDefaultCameraMode( PlayerController RequestedBy )
 {
@@ -34,7 +28,6 @@ simulated function FaceRotation(rotator NewRotation, float DeltaTime)
     }
     
 }
-     
 
 defaultproperties
 {
@@ -68,12 +61,7 @@ defaultproperties
     Mesh=InitialSkeletalMesh;
     Components.Add(InitialSkeletalMesh);
     
-    GroundSpeed=500.0  
-    CamHeight = 120.0
-    CamMinDistance = 40.0
-    CamMaxDistance = 256.0
-    CamOffsetDistance=256.0
-    CamZoomTick=20.0   
+    GroundSpeed=500.0    
     
     Begin Object Name=CollisionCylinder
     CollisionRadius=30

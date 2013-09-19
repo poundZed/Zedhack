@@ -1,4 +1,4 @@
-class ZedGame extends GameInfo;
+class ZedGameInfo extends GameInfo;
 
 defaultproperties
 {

@@ -1,6 +1,9 @@
 class ZedPlayerController extends UDKPlayerController
     config(Game);
 
+    var float CamZoom;
+    var float CamMinDistance, CamMaxDistance;
+    
 //Update player rotation when walking
 state PlayerWalking
 {
@@ -79,7 +82,22 @@ reliable client simulated function ClientPawnDied()
     bDuck = 0;
 }
 
+exec function ZoomIn ()
+{
+    if (PlayerCamera.FreeCamDistance > CamMinDistance )
+    PlayerCamera.FreeCamDistance-=CamZoom;
+}
+
+exec function ZoomOut ()
+{
+    if ( PlayerCamera.FreeCamDistance < CamMaxDistance )
+    PlayerCamera.FreeCamDistance+=CamZoom;
+}
+
 defaultproperties
 {
     CameraClass=class'Zedhack.IsoCam'
+    CamZoom = 10
+    CamMaxDistance = 550
+    CamMinDistance = 250
 }
